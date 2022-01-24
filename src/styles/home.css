@@ -1,0 +1,526 @@
+/*---------------------- */
+/* Custom Properties */
+/*---------------------- */
+
+:root {
+  /*colors */
+  --clr-dark: 230 35% 7%;
+  --clr-light: 231 77% 90%;
+  --clr-white: 0 0% 100%;
+
+  --clr-light-blue: 196, 63%, 62%
+
+  /* font-sizes */
+  --fs-900: 9.375rem;
+  --fs-800: 6.25rem;
+  --fs-700: 3.5rem;
+  --fs-600: 2rem;
+  --fs-500: 1.75rem;
+  --fs-400: 1.125rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
+
+  /* font-families */
+  --ff-serif: "Bellefair", serif;
+  --ff-sans-cond: "Barlow Condensed", sans-serif;
+  --ff-sans-normal: "Barlow", sans-serif;
+}
+
+/* --------------- */
+/* Reset */
+/* --------------- */
+
+/* tips for resets
+https://piccalil.li/blog/a-modern-css-reset
+*/
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset Margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* reset of body */
+
+body {
+  font-family: var(--ff-sans-cond);
+  font-size: var(--fs-300);
+  color: var(--clr-dark);
+  background-color: var(--clr-light);
+  line-height: 1.5;
+  min-height: 100vh;
+  grid-template-rows: min-content 2fr;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Make form elememsts easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+
+/* remove animations for thous who dont want them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------- */
+/* Utillitys */
+/* --------------- */
+
+/* Screenreader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+.right-aline {
+  justify-content: end;
+}
+
+.aline-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
+  /* outline: 1px solid red; */
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.sticky{
+  position: sticky;
+  top:0;
+}
+.container {
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
+}
+.grid-container {
+  outline: 1px solid green;
+  display: grid;
+  column-gap: var(--container-gap, 2rem);
+  grid-template-columns: minmax(2rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(
+      2rem,
+      1fr
+    );
+}
+.grid-container > *:first-child {
+  outline: 1px solid red;
+  grid-column: 2;
+}
+.grid-container > *:last-child {
+  outline: 1px solid blue;
+  grid-column: 3;
+}
+
+/* colors*/
+.bg-dark {
+  background-color: hsl(var(--clr-dark));
+}
+.bg-accent {
+  background-color: hsl(var(--clr-light));
+}
+.bg-white {
+  background-color: hsl(var(--clr-white));
+}
+
+.bg-light-blue{
+	background-color: hsl(var(--clr-light-blue));
+}
+
+.text-dark {
+  color: hsl(var(--clr-dark));
+}
+.text-accent {
+  color: hsl(var(--clr-light));
+}
+.text-white {
+  color: hsl(var(--clr-white));
+}
+
+.text-light-blue{
+	color: hsl(var(--clr-light-blue))
+}
+.ff-serif {
+  font-family: var(--ff-serif);
+}
+.ff-sans-cond {
+  font-family: var(--ff-sans-cond);
+}
+.ff-sans-normal {
+  font-family: var(--ff-sans-normal);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+  line-height: 1.1;
+}
+
+.margin-tp-5rem{
+  margin-top: 5rem;
+}
+
+/* --------------- */
+/* Components */
+/* --------------- */
+
+/* Nav */
+
+
+.primary-header{
+  width: 100%;
+}
+
+nav {
+  background-color: hsl(196, 63%, 62%, 0.6);
+  position: absolute;
+  width: 100%;
+  height: 3rem;
+}
+
+.active-nav{
+  height: 100vh;
+  background-color: hsl(196, 63%, 62%);
+  transition: height 0.25s;
+
+}
+
+
+
+.logo {
+  display: block;
+  margin-left: 5rem;
+  padding-top: 0.5rem;
+  width: 30px;
+  height: 30px;
+}
+
+.btn-nav {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+
+
+.primary-navigation {
+  --gap: 8rem;
+  --underline-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  list-style: none;
+  padding: 0 1rem 0 0;
+  margin: 3rem 0;
+  color: hsl(var(--clr-white));
+}
+
+.primary-navigation li{
+  margin-bottom: 1.5rem;
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+.li-active{
+  border-bottom: 2px solid red;
+}
+/* Booking-button */
+
+.book {
+  width: 20rem;
+  height: 4rem;
+  text-decoration: none;
+  border: 1px solid hsl(var(--clr-white));
+  transition: opacity 500ms linear, transform 250ms ease-in-out;
+}
+
+.book:hover,
+.book:focus {
+  background-color: hsl(196, 63%, 62%);
+  border: none;
+  font-weight: 800;
+  transform: scale(1.05)
+}
+
+/* hero */
+
+.img {
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.hero {
+  background-image: url(https://static.wixstatic.com/media/cf416e_4c7386a1d448447f8f17e3813a65e154~mv2_d_4032_3024_s_4_2.jpg/v1/fill/w_4032,h_3024,al_c/cf416e_4c7386a1d448447f8f17e3813a65e154~mv2_d_4032_3024_s_4_2.jpg);
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* main */
+/* .content
+.container-one
+.container-two */
+
+.content{
+  margin-top: 1rem;
+  padding-left: 28px;
+}
+
+.content > *{
+  margin-bottom: 2rem;
+}
+.container-starter-one{
+opacity: 0;
+}
+.container-starter-two{
+  opacity: 0;
+}
+.container-one{
+  opacity: 0;
+}
+
+.container-two{
+  opacity: 0;
+}
+
+.container-three{
+  
+  opacity: 0;
+}
+
+.margin-bottom{
+  margin-bottom: 5rem;
+}
+.down-arrow img{
+  animation: bounce 1s;
+  animation-direction: alternate;
+  /* animation-timing-function: cubic-bezier(.5, 0.05, 1, .5); */
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  from {
+      transform: translate3d(0, 0, 0);
+  }
+  to {
+      transform: translate3d(0, 0.5rem, 0);
+  }
+}
+/* Prefix Support */
+
+.down-arrow {
+  -webkit-animation-name: bounce;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-timing-function: cubic-bezier(
+  .5, 0.05, 1, .5);
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes bounce {
+  from {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+  }
+  to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0.5rem, 0);
+  }
+}
+/* footer */
+
+.footer {
+ background-color: hsl(196, 63%, 62%);
+ padding-left: 2rem;
+}
+
+.social{
+  padding-top: 2rem;
+
+}
+
+/* animations */
+
+.fade {
+  animation: fade 2s linear;
+  opacity: 1;
+}
+
+@keyframes fade {
+  0%{ opacity: 0 }
+  100% { opacity: 1 }
+}
+
+@media screen and (min-width: 765px){
+
+  .content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .content > * {
+    padding: 0 1rem 0rem 1rem;
+  }
+
+  .container-starter-one{
+width: 45%;
+  }
+  .container-starter-two{
+    width: 45%;
+      }
+
+  .container-one{
+    width: 30%;
+    
+    
+  }
+  .container-two{
+    width: 30%;
+    
+  }
+
+  .container-three{
+    width: 30%;
+  }
+
+  .text-box{
+    width: 80%;
+  }
+}
+

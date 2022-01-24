@@ -1,0 +1,57 @@
+---
+
+---
+
+<script>
+const nav = document.querySelector('.nav');
+const btnNav = document.querySelector('.btn-nav');
+const hamburgerNav = document.querySelector('.hamburger');
+const primaryNav = document.querySelector('.primary-navigation');
+const downArrow = document.querySelector(".down-arrow");
+const containerStarterOne = document.querySelector(".container-starter-one");
+const containerStarterTwo = document.querySelector(".container-starter-two");
+// const containerTwo = document.querySelector(".container-two");
+// const containerThree = document.querySelector(".container-three");
+// const btnNav = document.querySelector('.btn-nav')
+// const btnNav = document.querySelector('.btn-nav')
+
+
+btnNav.addEventListener('click', function(){
+    primaryNav.classList.toggle('hidden');
+    nav.classList.toggle('active-nav');
+    if (hamburgerNav.src.match("../assets/menu-symbol-open-2.svg")) {
+                hamburgerNav.src = "../assets/menu-symbol-close.svg";
+                downArrow.classList.add('hidden')
+            }
+            else {
+                hamburgerNav.src = "../assets/menu-symbol-open-2.svg";
+                downArrow.classList.remove('hidden')
+            };
+
+    
+    
+});
+
+//Observer container-one 
+const option = {
+    root: null,
+    threshold: 1.0,
+    rootMargin: "1px"
+};
+
+const observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(entries => {
+        if(!entries.isIntersecting){ //not is intersecting
+            return
+        }
+        entries.target.classList.add('fade');
+    //    console.log(entries.target); //target element
+    });
+}, option);
+
+
+observer.observe(containerStarterOne)
+observer.observe(containerStarterTwo)
+
+
+</script>
